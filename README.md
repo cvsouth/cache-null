@@ -34,25 +34,6 @@ $value = Cache::rememberForever('test2b', function() {
 composer require cvsouth/cache-null
 ```
 
-## Usage
-
-Once the package is installed the caching of null values is supported.
-
-You may also specify whether to respect null values on a case by case basis by passing an additional parameter `allowNull` to the methods `has`, `remember`, `rememberForever`, `add` and `sear`:
-
-```php
-Cache::forget('test3');
-
-$exists = Cache::has('test3', true); // returns FALSE
-$exists = Cache::has('test3', false); // returns FALSE
-
-Cache::put('test3', null);
-
-$exists = Cache::has('test3'); // returns TRUE
-$exists = Cache::has('test3', true); // returns TRUE
-$exists = Cache::has('test3', false); // returns FALSE
-```
-
 ## Notices
 
 The only cache driver currently supported by this package is `redis`.

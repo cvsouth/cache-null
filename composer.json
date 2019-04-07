@@ -1,0 +1,38 @@
+{
+    "name": "cvsouth/cache-null",
+
+    "description": "Enables support for caching of null values in Laravel",
+
+    "require": {
+
+        "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*"
+    },
+    "license": "proprietary",
+
+    "authors": [
+        {
+            "name": "Colin South",
+
+            "email": "colin@riseresolution.com"
+        }
+    ],
+    "autoload": {
+
+        "psr-4": {
+            "Cvsouth\\CacheNull\\": "src/"
+        },
+        "files": []
+    },
+    "minimum-stability": "dev",
+
+    "extra":
+    {
+        "laravel":
+        {
+            "providers":
+            [
+                "Cvsouth\\CacheNull\\Providers\\Laravel"
+            ]
+        }
+    }
+}

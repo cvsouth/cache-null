@@ -38,7 +38,7 @@ composer require cvsouth/cache-null
 
 Once the package is installed the caching of null values is supported.
 
-You may also specify whether to respect null values on a case by case basis by passing an additional parameter `allowNull` to the methods `has`, `remember`, `rememberForever`, `add`, `addForever` and `sear`:
+You may also specify whether to respect null values on a case by case basis by passing an additional parameter `allowNull` to the methods `has`, `remember`, `rememberForever`, `add` and `sear`:
 
 ```php
 Cache::forget('test3');

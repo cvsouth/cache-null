@@ -11,7 +11,7 @@ class Repository extends BaseRepository
      * Determine if an item exists in the cache.
      *
      * @param  string  $key
-     * @param  bool|null  $allowNull
+     * @param  bool  $allowNull
      * @return bool
      */
     public function has($key, $allowNull = true)
@@ -27,7 +27,7 @@ class Repository extends BaseRepository
      * Determine if an item doesn't exist in the cache.
      *
      * @param  string  $key
-     * @param  bool|null  $allowNull
+     * @param  bool  $allowNull
      * @return bool
      */
     public function missing($key, $allowNull = true)
@@ -41,7 +41,7 @@ class Repository extends BaseRepository
      * @param  string  $key
      * @param  \DateTimeInterface|\DateInterval|int|null  $ttl
      * @param  \Closure  $callback
-     * @param  bool|null  $allowNull
+     * @param  bool  $allowNull
      * @return mixed
      */
     public function remember($key, $ttl, Closure $callback, $allowNull = true)
@@ -68,7 +68,7 @@ class Repository extends BaseRepository
      *
      * @param  string  $key
      * @param  \Closure  $callback
-     * @param  bool|null  $allowNull
+     * @param  bool  $allowNull
      * @return mixed
      */
     public function sear($key, Closure $callback, $allowNull = true)
@@ -81,7 +81,7 @@ class Repository extends BaseRepository
      *
      * @param  string  $key
      * @param  \Closure  $callback
-     * @param  bool|null  $allowNull
+     * @param  bool  $allowNull
      * @return mixed
      */
     public function rememberForever($key, Closure $callback, $allowNull = true)
@@ -95,7 +95,7 @@ class Repository extends BaseRepository
      * @param  string  $key
      * @param  mixed   $value
      * @param  \DateTimeInterface|\DateInterval|int|null  $ttl
-     * @param  bool|null  $allowNull
+     * @param  bool  $allowNull
      * @return bool
      */
     public function add($key, $value, $ttl = null, $allowNull = true)

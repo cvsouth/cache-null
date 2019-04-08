@@ -11,12 +11,12 @@ class Repository extends BaseRepository
      * Determine if an item exists in the cache.
      *
      * @param  string  $key
-     * @param  bool|null  $allow_null
+     * @param  bool|null  $allowNull
      * @return bool
      */
-    public function has($key, $allow_null = true)
+    public function has($key, $allowNull = true)
     {
-        if($allow_null) {
+        if($allowNull) {
             return $this->store->exists($key);
         }
 
@@ -27,11 +27,12 @@ class Repository extends BaseRepository
      * Determine if an item doesn't exist in the cache.
      *
      * @param  string  $key
+     * @param  bool|null  $allowNull
      * @return bool
      */
-    public function missing($key)
+    public function missing($key, $allowNull = true)
     {
-        return ! $this->has($key);
+        return ! $this->has($key, $allowNull);
     }
 
     /**

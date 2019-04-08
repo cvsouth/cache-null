@@ -1,6 +1,6 @@
 # Cache Null
 
-By default in Laravel, as per [PSR-16](https://www.php-fig.org/psr/psr-16), cached null values are inistingustable from a cache miss:
+By default in Laravel, as per [PSR-16](https://www.php-fig.org/psr/psr-16/#14-data), cached null values are inistingustable from a cache miss:
 
 ```
 A cache miss will return null and therefore detecting if one stored null is not possible.

@@ -14,8 +14,6 @@ class RedisStore extends BaseRedisStore
      */
     public function exists($key)
     {
-        $value = $this->connection()->exists($this->prefix.$key);
-
-        return $value === 1;
+        return $this->connection()->exists($this->prefix.$key) === 1;
     }
 }

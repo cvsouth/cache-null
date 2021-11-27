@@ -19,8 +19,8 @@ class Repository extends BaseRepository
         if($allowNull) {
             return $this->store->exists($key);
         }
-
-        return !is_null($this->get($key));
+        
+        return ! is_null($this->get($key));
     }
 
     /**
@@ -51,14 +51,17 @@ class Repository extends BaseRepository
                 return $this->get($key);
             }
         } else {
-            $value = $this->store->get($key);
+            $value = $this->get($key);
 
-            if(!is_null($value)) {
+            // If the item exists in the cache we will just return this immediately and if
+            // not we will execute the given Closure and cache the result of that for a
+            // given number of seconds so it's available for all subsequent requests.
+            if (! is_null($value)) {
                 return $value;
             }
         }
-
-        $this->put($key, $value = $callback(), $ttl);
+        
+        $this->put($key, $value = $callback(), value($ttl));
 
         return $value;
     }
@@ -100,8 +103,12 @@ class Repository extends BaseRepository
      */
     public function add($key, $value, $ttl = null, $allowNull = true)
     {
+        $seconds = null;
+
         if ($ttl !== null) {
-            if ($this->getSeconds($ttl) <= 0) {
+            $seconds = $this->getSeconds($ttl);
+
+            if ($seconds <= 0) {
                 return false;
             }
 
@@ -109,8 +116,6 @@ class Repository extends BaseRepository
             // has a chance to override this logic. Some drivers better support the way
             // this operation should work with a total "atomic" implementation of it.
             if (method_exists($this->store, 'add')) {
-                $seconds = $this->getSeconds($ttl);
-
                 return $this->store->add(
                     $this->itemKey($key), $value, $seconds
                 );
@@ -121,7 +126,7 @@ class Repository extends BaseRepository
         // so it exists for subsequent requests. Then, we will return true so it is
         // easy to know if the value gets added. Otherwise, we will return false.
         if ($allowNull ? !$this->has($key) : is_null($this->get($key))) {
-            return $this->put($key, $value, $ttl);
+            return $this->put($key, $value, $seconds);
         }
 
         return false;

@@ -14,7 +14,7 @@ class Repository extends BaseRepository
      * @param  bool  $allowNull
      * @return bool
      */
-    public function has($key, $allowNull = true)
+    public function has($key, $allowNull = true): bool
     {
         if($allowNull) {
             return $this->store->exists($key);
@@ -30,7 +30,7 @@ class Repository extends BaseRepository
      * @param  bool  $allowNull
      * @return bool
      */
-    public function missing($key, $allowNull = true)
+    public function missing($key, $allowNull = true): bool
     {
         return ! $this->has($key, $allowNull);
     }
@@ -44,7 +44,7 @@ class Repository extends BaseRepository
      * @param  bool  $allowNull
      * @return mixed
      */
-    public function remember($key, $ttl, Closure $callback, $allowNull = true)
+    public function remember($key, $ttl, Closure $callback, $allowNull = true): mixed
     {
         if($allowNull) {
             if($this->store->exists($key)) {
@@ -74,7 +74,7 @@ class Repository extends BaseRepository
      * @param  bool  $allowNull
      * @return mixed
      */
-    public function sear($key, Closure $callback, $allowNull = true)
+    public function sear($key, Closure $callback, $allowNull = true): mixed
     {
         return $this->rememberForever($key, $callback, $allowNull);
     }
@@ -87,7 +87,7 @@ class Repository extends BaseRepository
      * @param  bool  $allowNull
      * @return mixed
      */
-    public function rememberForever($key, Closure $callback, $allowNull = true)
+    public function rememberForever($key, Closure $callback, $allowNull = true): mixed
     {
         return $this->remember($key, null, $callback, $allowNull);
     }
@@ -101,7 +101,7 @@ class Repository extends BaseRepository
      * @param  bool  $allowNull
      * @return bool
      */
-    public function add($key, $value, $ttl = null, $allowNull = true)
+    public function add($key, $value, $ttl = null, $allowNull = true): bool
     {
         $seconds = null;
 
